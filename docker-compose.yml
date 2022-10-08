@@ -1,8 +1,16 @@
 version: '3.7'
 services:
-  web:
-    image: nginx:alpine
-    ports:
-        - "80:80"
+#  web:
+#    image: nginx:alpine
+#    ports:
+#        - "80:80"
+#    volumes:
+#        - ./app:/usr/share/nginx/html
+  node:
+    build: docker/node/
+    command: npm run dev
     volumes:
-        - ./app:/usr/share/nginx/html
+      - ./app:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
